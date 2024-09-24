@@ -27,8 +27,8 @@ const Home = () => {
   if (error) {
     return <Error err={error.message} />;
   }
-  const title = "Ruhan Blogs";
-  const description = "Welcome to my Blog.";
+  const title = "Kami Blogs";
+  const description = "Some Blog About Something...";
   return (
     <>
       <Helmet>
