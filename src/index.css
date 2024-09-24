@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.prose > * {
+  font-family: "DM Sans", sans-serif;
+}
+.prose > h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+.prose > pre {
+  padding: 0;
+  margin: 0;
+  overflow-x: visible !important;
+  border-radius: 12px !important;
+}
+.prose > pre > div {
+  border-radius: 12px !important;
+}
+.prose code > * {
+  font-family: "JetBrains Mono", monospace !important;
+}
+
+.dm-sans {
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+@layer base {
+  :root {
+    --text: #040316;
+    --background: #dedde4;
+    --primary: #343b58;
+    --secondary: #f9f7ff;
+    --accent: #343b58;
+  }
+  .dark {
+    --text: #eae9fc;
+    --background: #1c1b22;
+    --primary: #7aa2f7;
+    --secondary: #000000;
+    --accent: #7aa2f7;
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
