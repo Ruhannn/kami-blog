@@ -8,12 +8,10 @@ import { getSingleBlogPost } from "../service";
 import { useParams } from "react-router-dom";
 import Error from "./Error";
 import Loading from "./Loading";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { useThemeContext } from "../context/themeContext";
 import { Helmet } from "react-helmet";
-import { dracula, oneLight } from "./CodeTheme";
+import CodeHighlighter from "./CodeHighlighter";
+
 const BlogPost = () => {
-  const { theme } = useThemeContext();
   const { slug } = useParams<{ slug: string }>();
 
   const {
@@ -55,21 +53,27 @@ const BlogPost = () => {
                   code({ node, inline, className, children, ...props }: any) {
                     const match = /language-(\w+)/.exec(className || "");
                     return !inline && match ? (
-                      <SyntaxHighlighter
-                        key={theme}
-                        style={theme === "light" ? oneLight : dracula}
-                        PreTag="div"
+                      <CodeHighlighter
+                        code={String(children).replace(/\n$/, "")}
                         language={match[1]}
-                        {...props}
-                      >
-                        {String(children).replace(/\n$/, "")}
-                      </SyntaxHighlighter>
+                      />
                     ) : (
                       <code className={className} {...props}>
                         {children}
                       </code>
                     );
                   },
+                  // img: ({ src, alt }) => {
+                  //   return (
+                  //     <Image
+                  //       alt={alt}
+                  //       src={src}
+                  //       maxW="full"
+                  //       objectFit="cover"
+                  //       borderRadius="md"
+                  //     />
+                  //   );
+                  // },
                 }}
               >
                 {post.markdown}
