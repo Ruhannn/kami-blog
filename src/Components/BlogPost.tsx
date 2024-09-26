@@ -1,15 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import ReactMarkdown from "react-markdown";
-import rehypeRaw from "rehype-raw";
-import remarkGfm from "remark-gfm";
 import { useQuery } from "@tanstack/react-query";
 import { getSingleBlogPost } from "../service";
 import { useParams } from "react-router-dom";
 import Error from "./Error";
 import Loading from "./Loading";
 import { Helmet } from "react-helmet";
-import CodeHighlighter from "./CodeHighlighter";
+import MarkDown from "./MarkDown";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -46,38 +41,7 @@ const BlogPost = () => {
         <main className="max-w-5xl mx-auto">
           <div className="flex items-center justify-center">
             <article className="prose-sm prose dark:prose-invert bg-background sm:prose-base lg:prose-lg xl:prose-xl">
-              <ReactMarkdown
-                remarkPlugins={[remarkGfm]}
-                rehypePlugins={[rehypeRaw]}
-                components={{
-                  code({ node, inline, className, children, ...props }: any) {
-                    const match = /language-(\w+)/.exec(className || "");
-                    return !inline && match ? (
-                      <CodeHighlighter
-                        code={String(children).replace(/\n$/, "")}
-                        language={match[1]}
-                      />
-                    ) : (
-                      <code className={className} {...props}>
-                        {children}
-                      </code>
-                    );
-                  },
-                  // img: ({ src, alt }) => {
-                  //   return (
-                  //     <Image
-                  //       alt={alt}
-                  //       src={src}
-                  //       maxW="full"
-                  //       objectFit="cover"
-                  //       borderRadius="md"
-                  //     />
-                  //   );
-                  // },
-                }}
-              >
-                {post.markdown}
-              </ReactMarkdown>
+              <MarkDown>{post.markdown}</MarkDown>
             </article>
           </div>
         </main>

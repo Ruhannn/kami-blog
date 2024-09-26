@@ -7,7 +7,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Main from "./layout/Main";
 import Home from "./Home";
 import { ThemeProvider } from "./context/themeContext";
-import { ChakraBaseProvider } from "@chakra-ui/react";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,13 +27,11 @@ const qc = new QueryClient();
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={qc}>
-      <ChakraBaseProvider>
-        <ThemeProvider>
-          <div className="antialiased bg-background text-text">
-            <RouterProvider router={router} />
-          </div>
-        </ThemeProvider>
-      </ChakraBaseProvider>
+      <ThemeProvider>
+        <div className="antialiased bg-background text-text">
+          <RouterProvider router={router} />
+        </div>
+      </ThemeProvider>
     </QueryClientProvider>
   </StrictMode>
 );
