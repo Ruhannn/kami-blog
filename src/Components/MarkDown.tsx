@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
+import { rehypeTwemoji, RehypeTwemojiOptions } from "rehype-twemoji";
 import remarkGfm from "remark-gfm";
 import CodeHighlighter from "./CodeHighlighter";
 import { Image } from "@nextui-org/image";
@@ -12,7 +13,10 @@ export default function MarkDown({ children }: any) {
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
-      rehypePlugins={[rehypeRaw]}
+      rehypePlugins={[
+        rehypeRaw,
+        [rehypeTwemoji, {} satisfies RehypeTwemojiOptions],
+      ]}
       components={{
         code({ node, inline, className, children, ...props }: any) {
           const match = /language-(\w+)/.exec(className || "");
@@ -44,9 +48,17 @@ export default function MarkDown({ children }: any) {
           );
         },
         img: ({ alt, src }) => (
-          <div>
-            <Image isZoomed draggable={false} src={src} alt={alt} />
-          </div>
+          <>
+            {src?.includes("https://cdn.jsdelivr.net/gh") ? (
+              <img
+                className="size-[1.2em] inline-block mx-1 !my-0"
+                src={src}
+                alt={alt}
+              />
+            ) : (
+              <Image isZoomed draggable={false} src={src} alt={alt} />
+            )}
+          </>
         ),
       }}
     >

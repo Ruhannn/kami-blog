@@ -40,7 +40,7 @@ const BlogPost = () => {
       <div className="min-h-screen px-4 sm:px-6 lg:px-8">
         <main className="max-w-5xl mx-auto">
           <div className="flex items-center justify-center">
-            <article className="prose-sm prose dark:prose-invert bg-background sm:prose-base lg:prose-lg xl:prose-xl">
+            <article className="my-24 prose-sm prose dark:prose-invert bg-background sm:prose-base lg:prose-lg xl:prose-xl">
               <MarkDown>{post.markdown}</MarkDown>
             </article>
           </div>
