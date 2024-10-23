@@ -39,8 +39,8 @@ export default function ThemeToggle() {
         ],
       },
       {
-        duration: 500,
-        easing: "cubic-bezier(0.99, 1.56,0.64,1)",
+        duration: 800,
+        easing: "ease",
         pseudoElement: "::view-transition-new(root)",
       }
     );
@@ -52,7 +52,7 @@ export default function ThemeToggle() {
 
   return (
     <>
-      <button key={theme} className="cursor-pointer" onClick={handleChange}>
+      <button className="cursor-pointer" onClick={handleChange}>
         {theme === "light" ? <BiMoon /> : <BiSun />}
       </button>
       <div ref={ref} />
