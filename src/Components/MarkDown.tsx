@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
-import { rehypeTwemoji, RehypeTwemojiOptions } from "rehype-twemoji";
+import { rehypeTwemoji } from "rehype-twemoji";
 import remarkGfm from "remark-gfm";
 import CodeHighlighter from "./CodeHighlighter";
 import { Image } from "@nextui-org/image";
@@ -13,10 +13,7 @@ export default function MarkDown({ children }: any) {
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
-      rehypePlugins={[
-        rehypeRaw,
-        [rehypeTwemoji, {} satisfies RehypeTwemojiOptions],
-      ]}
+      rehypePlugins={[rehypeRaw, [rehypeTwemoji]]}
       components={{
         code({ node, inline, className, children, ...props }: any) {
           const match = /language-(\w+)/.exec(className || "");

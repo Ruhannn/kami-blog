@@ -5,7 +5,7 @@ import Error from "./Error";
 import Loading from "./Loading";
 import { Helmet } from "react-helmet";
 import MarkDown from "./MarkDown";
-
+import { motion } from "framer-motion";
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
 
@@ -40,9 +40,18 @@ const BlogPost = () => {
       <div className="min-h-screen px-4 sm:px-6 lg:px-8">
         <main className="max-w-5xl mx-auto">
           <div className="flex items-center justify-center">
-            <article className="my-24 prose-sm prose dark:prose-invert bg-background sm:prose-base lg:prose-lg xl:prose-xl">
+            <motion.article
+              initial={{ opacity: 0, y: 0, filter: "blur(4px)" }}
+              animate={{ opacity: 1, y: -40, filter: "blur(0px)" }}
+              transition={{
+                duration: 1.2,
+                type: "spring",
+                bounce: 0.3,
+              }}
+              className="my-24 prose-sm prose dark:prose-invert bg-background sm:prose-base lg:prose-lg xl:prose-xl"
+            >
               <MarkDown>{post.markdown}</MarkDown>
-            </article>
+            </motion.article>
           </div>
         </main>
       </div>
