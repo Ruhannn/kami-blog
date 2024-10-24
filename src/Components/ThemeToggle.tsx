@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { flushSync } from "react-dom";
 import { BiMoon, BiSun } from "react-icons/bi";
 import { useThemeContext } from "../context/themeContext";
+import { checkMotion } from "../utils/checkMotion";
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useThemeContext();
@@ -9,11 +10,7 @@ export default function ThemeToggle() {
 
   const toggleDarkMode = async (newState: boolean) => {
     // Return early if View Transition API is not supported or user prefers reduced motion
-    if (
-      !ref.current ||
-      !document.startViewTransition ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
+    if (!ref.current || checkMotion()) {
       setTheme(newState ? "dark" : "light");
       return;
     }

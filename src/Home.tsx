@@ -6,6 +6,7 @@ import { getBlogPosts } from "./service";
 import Loading from "./Components/Loading";
 import Error from "./Components/Error";
 import { Helmet } from "react-helmet";
+import { checkMotion } from "./utils/checkMotion";
 
 const Home = () => {
   const {
@@ -27,6 +28,7 @@ const Home = () => {
   if (error) {
     return <Error err={error.message} />;
   }
+
   const title = "Kami Blogs";
   const description = "Some Blog About Something...";
   return (
@@ -45,7 +47,11 @@ const Home = () => {
           content={title}
         />
       </Helmet>
-      <div className="min-h-[200vh] p-4 bg-background">
+      <div
+        className={`min-h-[200vh] p-4 bg-background ${
+          checkMotion() ? "toggle-animation" : ""
+        }`}
+      >
         <h1 className="text-3xl text-center my-7">Blogs</h1>
         {Array.isArray(posts) && posts.length > 0 ? (
           <AnimatedGroup

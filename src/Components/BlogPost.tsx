@@ -6,6 +6,7 @@ import Loading from "./Loading";
 import { Helmet } from "react-helmet";
 import MarkDown from "./MarkDown";
 import { motion } from "framer-motion";
+import { checkMotion } from "../utils/checkMotion";
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
 
@@ -37,7 +38,11 @@ const BlogPost = () => {
         <meta name="og:description" content={post.description} />
         <meta name="og:image" content={post.cover} />
       </Helmet>
-      <div className="min-h-screen px-4 sm:px-6 lg:px-8">
+      <div
+        className={`min-h-screen px-4 sm:px-6 lg:px-8 bg-background ${
+          checkMotion() ? "toggle-animation" : ""
+        }`}
+      >
         <main className="max-w-5xl mx-auto">
           <div className="flex items-center justify-center">
             <motion.article
@@ -48,7 +53,9 @@ const BlogPost = () => {
                 type: "spring",
                 bounce: 0.3,
               }}
-              className="my-24 prose-sm prose dark:prose-invert bg-background sm:prose-base lg:prose-lg xl:prose-xl"
+              className={`my-24 prose-sm prose dark:prose-invert bg-background sm:prose-base lg:prose-lg xl:prose-xl ${
+                checkMotion() ? "toggle-animation" : ""
+              }`}
             >
               <MarkDown>{post.markdown}</MarkDown>
             </motion.article>

@@ -89,7 +89,7 @@ hr {
   border-radius: 20px;
   border: 6px solid transparent;
   background-clip: content-box;
-  transition: all 3s ease-in-out;
+  transition: all 1s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -99,8 +99,14 @@ hr {
 html {
   scrollbar-width: thin;
   scrollbar-color: #5a576e #dedde4;
+  transition: scrollbar-color 0.5s ease;
 }
 
 html:has(.dark) {
   scrollbar-color: #5a576e #1c1b22;
+}
+
+/*  !document.startViewTransition || window.matchMedia("(prefers-reduced-motion: reduce)").matches */
+.toggle-animation {
+  transition: background-color 0.5s ease !important;
 }
