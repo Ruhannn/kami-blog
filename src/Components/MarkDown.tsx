@@ -48,6 +48,7 @@ export default function MarkDown({ children }: any) {
           <>
             {src?.includes("https://cdn.jsdelivr.net/gh") ? (
               <img
+                draggable={false}
                 className="size-[1.2em] inline-block mx-1 !my-0"
                 src={src}
                 alt={alt}

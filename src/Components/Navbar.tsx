@@ -87,10 +87,13 @@ const Navbar = ({
             <span className="hidden text-sm sm:block">{navItem.name}</span>
           </Link>
         ))}
-        <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full">
+        <Link
+          to={"/about"}
+          className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full"
+        >
           <span>about</span>
           <span className="absolute inset-x-0 w-1/2 h-px mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
-        </button>
+        </Link>
         <ThemeToggle />
       </motion.div>
     </AnimatePresence>
