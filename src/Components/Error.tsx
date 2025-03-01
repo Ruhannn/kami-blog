@@ -34,7 +34,7 @@ export default function Error({ err }: { err?: string }) {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50"
           >
-            <div id="content" className="p-5 rounded-lg bg-neutral-900">
+            <div id="content" className="p-5 rounded-lg bg-background">
               <h2 className="text-xl">{err}</h2>
             </div>
           </motion.div>

@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet";
 import { BlogPost } from "./@types/schema";
 import BlogCard from "./Components/BlogCard";
-import { AnimatedGroup } from "./Components/GroupAnimated";
-import { getBlogPosts } from "./service";
-import Loading from "./Components/Loading";
 import Error from "./Components/Error";
-import { Helmet } from "react-helmet";
+import { AnimatedGroup } from "./Components/GroupAnimated";
+import Loading from "./Components/Loading";
+import { getBlogPosts } from "./service";
 import { checkMotion } from "./utils/checkMotion";
 
 const Home = () => {
@@ -40,7 +40,11 @@ const Home = () => {
           title={"description"}
           content={description}
         />
-        <meta name={"og:title"} title={"og:title"} content={title} />
+        <meta
+          name={"og:title"}
+          title={"og:title"}
+          content={title}
+        />
         <meta
           name={"og:description"}
           title={"og:description"}
@@ -50,8 +54,7 @@ const Home = () => {
       <div
         className={`min-h-[200vh] p-4 bg-background ${
           checkMotion() ? "toggle-animation" : ""
-        }`}
-      >
+        }`}>
         <h1 className="text-3xl text-center my-7">Blogs</h1>
         {Array.isArray(posts) && posts.length > 0 ? (
           <AnimatedGroup
@@ -79,10 +82,12 @@ const Home = () => {
                 },
               },
             }}
-            className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-          >
+            className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {posts.map((post: BlogPost) => (
-              <BlogCard key={post.id} post={post} />
+              <BlogCard
+                key={post.id}
+                post={post}
+              />
             ))}
           </AnimatedGroup>
         ) : (
