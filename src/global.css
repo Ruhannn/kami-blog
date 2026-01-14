@@ -1,0 +1,154 @@
+@import "tailwindcss";
+@plugin '@tailwindcss/typography';
+@custom-variant dark (&:is(.dark *));
+
+/* fonts */
+/* .dm-sans {
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+} */
+
+/* variable */
+:root {
+  --text: #040316;
+  --background: #dedde4;
+  --primary: #343b58;
+  --secondary: #f9f7ff;
+  --accent: #343b58;
+}
+.dark {
+  --text: #eae9fc;
+  --background: #1c1b22;
+  --primary: #7aa2f7;
+  --secondary: #000000;
+  --accent: #7aa2f7;
+}
+
+@theme inline {
+  --color-text: var(--text);
+  --color-background: var(--background);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+}
+
+@layer base {
+  body {
+    @apply bg-background text-text;
+  }
+}
+
+html {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+.astro-code {
+  background-color: #ededfe !important;
+}
+
+.dark .astro-code,
+.dark .astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  @apply rounded-xl;
+}
+
+html,
+body {
+  @apply size-full;
+}
+
+body {
+  @apply font-sans antialiased;
+  @apply flex flex-col;
+  @apply bg-background;
+  @apply text-text;
+}
+
+header {
+  @apply fixed top-0 left-0 right-0 z-50 py-5;
+  @apply backdrop-blur-sm saturate-200;
+}
+
+main {
+  @apply flex-1 py-32;
+}
+
+footer {
+  @apply py-5 text-sm;
+}
+
+article {
+  @apply max-w-full prose dark:prose-invert prose-img:mx-auto prose-img:my-auto;
+  @apply prose-headings:font-semibold prose-strong:text-text prose-td:text-text prose-li:marker:text-red-200 prose-ol:marker:text-red-200;
+  @apply prose-headings:text-text prose-blockquote:border-red-200 prose-hr:border-accent;
+  @apply prose-img:rounded-xl;
+}
+
+.contains-task-list {
+  list-style-type: none;
+  padding-inline-start: 0;
+
+  .task-list-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+
+    input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      margin-right: 8px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      position: relative;
+      background-color: var(--input);
+
+      &:checked {
+        background-color: var(--primary);
+      }
+
+      &:checked::after {
+        content: "✓";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #e2e2f5;
+        font-size: 15px;
+        font-weight: bold;
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+      }
+    }
+  }
+}
+
+article a {
+  @apply font-sans hover:text-primary underline underline-offset-2;
+  @apply decoration-primary/30;
+  @apply transition-colors duration-300 ease-in-out;
+}
+
+.animate {
+  @apply opacity-0 translate-y-3;
+  @apply transition-all duration-700 ease-out;
+}
+
+.animate.show {
+  @apply opacity-100 translate-y-0;
+}
+
+html #back-to-top {
+  @apply opacity-0 pointer-events-none;
+}
+
+html.scrolled #back-to-top {
+  @apply opacity-100 pointer-events-auto;
+}

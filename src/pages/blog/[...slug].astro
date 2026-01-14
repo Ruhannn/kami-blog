@@ -1,0 +1,27 @@
+---
+import { markdown } from "@astropub/md";
+import Layout from "@layouts/Layout.astro";
+import { notion } from "@lib/notion";
+// import BackToPrev from "@components/BackToPrev.astro";
+// import BlogButtons from "@components/BlogButtons.astro";
+export const prerender = false;
+
+const { slug } = Astro.params;
+
+const { data, markdown: m } = await notion.getBlogBySlug(slug!);
+---
+
+<Layout
+  title={data.title}
+  description={data.description}
+>
+  <div class="mx-auto max-w-4xl px-5">
+    <div class="animate">
+      <!-- <BackToPrev href="/blog"> Back to blog </BackToPrev> -->
+    </div>
+
+    <article>
+      {await markdown(m)}
+    </article>
+  </div>
+</Layout>
