@@ -1,0 +1,21 @@
+---
+import BlogCard from "@components/BlogCard.astro";
+import { HOME } from "@consts";
+
+import Layout from "@layouts/Layout.astro";
+import { notion } from "@lib/notion";
+
+const blogs = await notion.getBlogs();
+---
+
+<Layout
+  title={HOME.TITLE}
+  description={HOME.DESCRIPTION}
+>
+  <div class="min-h-screen p-4 animate">
+    <h1 class="text-3xl text-center my-7">My Blogs</h1>
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {blogs.map(blog => <BlogCard blog={blog} />)}
+    </div>
+  </div>
+</Layout>
