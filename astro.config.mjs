@@ -4,7 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel";
 import markdownIntegration from "@astropub/md";
 
-import playformCompress from "@playform/compress";
+// import playformCompress from "@playform/compress";
 
 import tailwindcss from "@tailwindcss/vite";
 
@@ -30,7 +30,6 @@ export default defineConfig({
     },
   },
   adapter: vercel({
-
   }),
-  integrations: [markdownIntegration(), sitemap(), playformCompress()],
+  integrations: [markdownIntegration(), sitemap()],
 });
