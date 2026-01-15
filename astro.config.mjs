@@ -1,18 +1,20 @@
 // @ts-check
 import { fileURLToPath, URL } from "node:url";
 import sitemap from "@astrojs/sitemap";
-import vercel from "@astrojs/vercel";
+
+// import playformCompress from "@playform/compress";
+
+import vercelAdapter from "@astrojs/vercel";
+
 import markdownIntegration from "@astropub/md";
 
-import playformCompress from "@playform/compress";
-
 import tailwindcss from "@tailwindcss/vite";
-
 import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://blog.ruhann.me",
+
   vite: {
     plugins: [tailwindcss()],
     resolve: {
@@ -21,6 +23,7 @@ export default defineConfig({
       },
     },
   },
+
   markdown: {
     shikiConfig: {
       themes: {
@@ -29,8 +32,7 @@ export default defineConfig({
       },
     },
   },
-  adapter: vercel({
 
-  }),
-  integrations: [markdownIntegration(), sitemap(), playformCompress()],
+  integrations: [markdownIntegration(), sitemap()],
+  adapter: vercelAdapter(),
 });
