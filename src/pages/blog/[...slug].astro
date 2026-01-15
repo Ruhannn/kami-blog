@@ -9,19 +9,20 @@ export const prerender = false;
 const { slug } = Astro.params;
 
 const { data, markdown: m } = await notion.getBlogBySlug(slug!);
+const rawMarkdown = await markdown(m);
 ---
 
 <Layout
   title={data.title}
   description={data.description}
 >
-  <div class="mx-auto max-w-4xl px-5">
+  <div class="mx-auto max-w-4xl p-5">
     <div class="animate">
       <!-- <BackToPrev href="/blog"> Back to blog </BackToPrev> -->
     </div>
 
-    <article>
-      {await markdown(m)}
+    <article class="animate">
+      {rawMarkdown}
     </article>
   </div>
 </Layout>

@@ -9,7 +9,7 @@ type Props = {
 const { blog } = Astro.props;
 ---
 <a href={`/blog/${blog.slug}`}>
-    <div class="w-full min-w-75 h-70 [box-shadow:0_2px_4px_0_rgba(0,0,0,0.1)] rounded-lg box-border overflow-hidden **:[transition:0.3s_ease_all] [&:hover_img]:-mt-8 [&:hover_h3]:p-[8px_12px_0] [&:focus-within_img]:-mt-8 [&:focus-within_h3]:p-[8px_12px_0] dark:bg-[#1e1e2e] bg-[#f9f7ff] text-text">
+    <div class="w-full min-w-75 h-70 [box-shadow:0_2px_4px_0_rgba(0,0,0,0.1)] rounded-lg box-border overflow-hidden **:[transition:0.3s_ease_all] [&:hover_img]:-mt-8 [&:hover_h3]:p-[8px_12px_0] [&:focus-within_img]:-mt-8 [&:focus-within_h3]:p-[8px_12px_0] dark:bg-[#1e1e2e] bg-[#f9f7ff] text-text truncate animate">
     {blog.cover && (
         <img
           class="w-full h-56 object-cover block"
