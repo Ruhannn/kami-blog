@@ -116,3 +116,14 @@ article a {
   background-color: var(--shiki-dark-bg) !important;
   @apply rounded-xl;
 }
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}

@@ -1,9 +1,15 @@
 // @ts-check
 import { fileURLToPath, URL } from "node:url";
+import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel";
 import markdownIntegration from "@astropub/md";
+
+import playformCompress from "@playform/compress";
+
 import tailwindcss from "@tailwindcss/vite";
+
 import { defineConfig } from "astro/config";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://blog.ruhann.me",
@@ -26,5 +32,5 @@ export default defineConfig({
   adapter: vercel({
 
   }),
-  integrations: [markdownIntegration()],
+  integrations: [markdownIntegration(), sitemap(), playformCompress()],
 });

@@ -1,5 +1,6 @@
 ---
 import Head from "@components/Head.astro";
+import Header from "@components/Header.astro";
 import { SITE } from "@consts";
 
 
@@ -18,7 +19,12 @@ const { title, description } = Astro.props;
     <Head title={`${title} | ${SITE.NAME}`} description={description} />
   </head>
   <body>
-    <!-- <Header /> -->
+    <Header navItems={[{
+       name: "Home",
+       link: "/",
+            // icon: <HiHome className="w-4 h-4 text-text" />,
+    }]}
+    />
     <main>
       <slot />
     </main>

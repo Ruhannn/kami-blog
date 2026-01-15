@@ -1,0 +1,79 @@
+---
+interface Props {
+  navItems: {
+    name: string;
+    link: string;
+    icon?: string;
+  }[];
+}
+
+const { navItems } = Astro.props;
+---
+
+<div
+  class="flex max-w-fit fixed top-10 inset-x-0 mx-auto border border-transparent dark:border-white/20 rounded-full bg-[#f9f7ff] dark:bg-[#181826] shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-5000 items-center justify-center space-x-4 px-5 py-1.5 navbar"
+>
+  {navItems.map(navItem => (
+    <a
+      href={navItem.link}
+      class="relative text-text items-center flex space-x-1 "
+    >
+      <span class="block sm:hidden">
+        {navItem.icon && <Fragment set:html={navItem.icon} />}
+      </span>
+      <span class="hidden sm:block">{navItem.name}</span>
+    </a>
+  ))}
+  <a
+    href="https://ruhann.me"
+    target="_blank"
+    class="border font-medium relative border-neutral-200 dark:border-white/20 text-black dark:text-white px-4 py-2 rounded-full"
+  >
+    <span>about</span>
+    <span class="absolute inset-x-0 w-1/2 h-px mx-auto -bottom-px bg-linear-to-r from-transparent via-blue-500 to-transparent" />
+  </a>
+ <button id="theme-toggle" class="cursor-pointer" />
+</div>
+
+<script>
+ const navbar = document.querySelector(".navbar") as HTMLElement;
+ let lastScroll = window.pageYOffset;
+ let visible = false;
+
+ // Initial hide
+ if (navbar) {
+   navbar.style.transform = "translateY(-100%)";
+   navbar.style.opacity = "0";
+   navbar.style.transition = "transform 0.2s ease, opacity 0.2s ease";
+ }
+
+ window.addEventListener("scroll", () => {
+   if (!navbar) {
+     return;
+   }
+
+   const currentScroll = window.pageYOffset;
+   const documentHeight = document.documentElement.scrollHeight;
+   const viewportHeight = window.innerHeight;
+   const scrollProgress = currentScroll / (documentHeight - viewportHeight);
+
+   if (scrollProgress < 0.05) {
+     visible = false;
+   }
+ else {
+     const direction = currentScroll - lastScroll;
+     visible = direction < 0;
+   }
+
+   if (visible) {
+     navbar.style.transform = "translateY(0)";
+     navbar.style.opacity = "1";
+   }
+ else {
+     navbar.style.transform = "translateY(-100%)";
+     navbar.style.opacity = "0";
+   }
+
+   lastScroll = currentScroll;
+ });
+</script>

@@ -1,15 +1,14 @@
 ---
-import { markdown } from "@astropub/md";
+import { markdown as markdownToHtml } from "@astropub/md";
 import Layout from "@layouts/Layout.astro";
 import { notion } from "@lib/notion";
-// import BackToPrev from "@components/BackToPrev.astro";
-// import BlogButtons from "@components/BlogButtons.astro";
+
 export const prerender = false;
 
 const { slug } = Astro.params;
 
 const { data, markdown: m } = await notion.getBlogBySlug(slug!);
-const rawMarkdown = await markdown(m);
+const markdown = await markdownToHtml(m);
 ---
 
 <Layout
@@ -17,12 +16,8 @@ const rawMarkdown = await markdown(m);
   description={data.description}
 >
   <div class="mx-auto max-w-4xl p-5">
-    <div class="animate">
-      <!-- <BackToPrev href="/blog"> Back to blog </BackToPrev> -->
-    </div>
-
     <article class="animate">
-      {rawMarkdown}
+      {markdown}
     </article>
   </div>
 </Layout>

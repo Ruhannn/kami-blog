@@ -12,13 +12,14 @@
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.14",
+    "@astrojs/sitemap": "^3.6.1",
     "@astrojs/vercel": "^9.0.3",
     "@astropub/md": "^1.0.0",
     "@fontsource/dm-sans": "^5.2.8",
     "@notionhq/client": "^5.6.0",
+    "@playform/compress": "^0.2.1",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.16.9",
-    "marked": "^17.0.1",
     "notion-to-md": "^3.1.9",
     "tailwindcss": "^4.1.18"
   },
