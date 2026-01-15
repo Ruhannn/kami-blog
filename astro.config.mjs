@@ -1,14 +1,14 @@
 // @ts-check
 import { fileURLToPath, URL } from "node:url";
-import netlify from "@astrojs/netlify";
 import sitemap from "@astrojs/sitemap";
 
 // import playformCompress from "@playform/compress";
 
+import vercelAdapter from "@astrojs/vercel";
+
 import markdownIntegration from "@astropub/md";
 
 import tailwindcss from "@tailwindcss/vite";
-
 import { defineConfig } from "astro/config";
 
 // https://astro.build/config
@@ -34,5 +34,5 @@ export default defineConfig({
   },
 
   integrations: [markdownIntegration(), sitemap()],
-  adapter: netlify(),
+  adapter: vercelAdapter(),
 });
