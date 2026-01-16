@@ -1,7 +1,6 @@
 // @ts-check
 import { fileURLToPath, URL } from "node:url";
-// import vercelAdapter from "@astrojs/vercel";
-import node from "@astrojs/node";
+// import node from "@astrojs/node";
 
 // import playformCompress from "@playform/compress";
 
@@ -12,8 +11,6 @@ import vercelAdapter from "@astrojs/vercel";
 import markdownIntegration from "@astropub/md";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
-import rehypePrettyCode from "rehype-pretty-code";
-import { highlighter } from "./src/lib/shiki";
 
 // https://astro.build/config
 export default defineConfig({
