@@ -1,14 +1,18 @@
 ---
 import { markdown as markdownToHtml } from "@astropub/md";
 import Layout from "@layouts/Layout.astro";
-import { notion } from "@lib/notion";
 
 export const prerender = false;
 
 const { slug } = Astro.params;
 
-const { data, markdown: m } = await notion.getBlogBySlug(slug!);
-const markdown = markdownToHtml(m);
+
+const url = new URL(`/api/blog/${slug}`, Astro.request.url);
+
+const res = await fetch(url.toString());
+const { data, markdown: rawMarkdown } = await res.json();
+
+const markdown = markdownToHtml(rawMarkdown);
 ---
 
 <Layout

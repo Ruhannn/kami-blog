@@ -2,8 +2,11 @@
 import BlogCard from "@components/BlogCard.astro";
 import { HOME } from "@consts";
 
+
 import Layout from "@layouts/Layout.astro";
 import { notion } from "@lib/notion";
+
+export const prerender = false;
 
 const blogs = await notion.getBlogs();
 ---
