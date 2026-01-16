@@ -13,6 +13,7 @@ import markdownIntegration from "@astropub/md";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import rehypePrettyCode from "rehype-pretty-code";
+import { highlighter } from "./src/lib/shiki";
 
 // https://astro.build/config
 export default defineConfig({
@@ -27,19 +28,26 @@ export default defineConfig({
     },
   },
   markdown: {
-    // syntaxHighlight: false,
-    rehypePlugins: [
-      [
-        rehypePrettyCode,
-        {
-          theme: {
-            light: "catppuccin-latte",
-            dark: "catppuccin-mocha",
-          },
-
-        },
-      ],
-    ],
+    syntaxHighlight: "shiki",
+    shikiConfig: {
+      defaultColor: false,
+      themes: {
+        light: "aurora-x",
+        dark: "catppuccin-mocha",
+      },
+    },
+    // rehypePlugins: [
+    //   [
+    //     rehypePrettyCode,
+    //     {
+    //       theme: {
+    //         light: "catppuccin-latte",
+    //         dark: "catppuccin-mocha",
+    //       },
+    //       getHighlighter: () => highlighter,
+    //     },
+    //   ],
+    // ],
   },
   integrations: [markdownIntegration(), sitemap()],
   // adapter: node({

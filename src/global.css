@@ -3,7 +3,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* :root {
+:root {
   --font-sans: "DM Sans", sans-serif;
   --text: #040316;
   --background: #dedde4;
@@ -26,7 +26,6 @@
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
 }
-
 
 body {
   @apply bg-background text-text font-sans;
@@ -107,14 +106,26 @@ article a {
   @apply opacity-100 translate-y-0;
 }
 
+/* .astro-code {
+  background-color: #ededfe !important;
+} */
 
-html.lenis,
-html.lenis body {
-  height: auto;
+.astro-code,
+.astro-code span {
+  color: var(--shiki-light) !important;
+  background-color: var(--shiki-light-bg) !important;
+  @apply rounded-xl;
+}
+
+.dark .astro-code,
+.dark .astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  @apply rounded-xl;
 }
 
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
-} */
+}
