@@ -24,12 +24,12 @@ export default defineConfig({
     },
   },
   markdown: {
-    // shikiConfig: {
-    //   themes: {
-    //     light: "catppuccin-latte",
-    //     dark: "catppuccin-mocha",
-    //   },
-    // },
+    shikiConfig: {
+      themes: {
+        light: "catppuccin-latte",
+        dark: "catppuccin-mocha",
+      },
+    },
   },
   integrations: [markdownIntegration(), sitemap()],
   adapter: vercelAdapter(),
