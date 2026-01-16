@@ -1,0 +1,29 @@
+---
+import { markdown as markdownToHtml } from "@astropub/md";
+import Layout from "@layouts/Layout.astro";
+
+const { slug } = Astro.props;
+let markdownHtml = "";
+let data: any = {};
+const loadData = async () => {
+  const res = await fetch(new URL(`/api/blog/${slug}`, Astro.request.url));
+  const json = await res.json();
+  data = json.data;
+  markdownHtml = await markdownToHtml(json.markdown);
+};
+
+await loadData();
+---
+
+<Layout
+  title={data.title}
+  description={data.description}
+>
+  <div class="mx-auto max-w-4xl p-5">
+    <article class="animate">
+      {markdownHtml}
+    </article>
+  </div>
+</Layout>
+
+

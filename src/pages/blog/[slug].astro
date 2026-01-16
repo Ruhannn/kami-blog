@@ -1,25 +1,11 @@
 ---
-import { markdown as markdownToHtml } from "@astropub/md";
-import Layout from "@layouts/Layout.astro";
+import BlogContent from "@components/BlogContent.astro";
+
+
+export const prerender = false;
 
 const { slug } = Astro.params;
 
-
-const url = new URL(`/api/blog/${slug}`, Astro.request.url);
-
-const res = await fetch(url.toString());
-const { data, markdown: rawMarkdown } = await res.json();
-
-const markdown = markdownToHtml(rawMarkdown);
 ---
 
-<Layout
-  title={data.title}
-  description={data.description}
->
-  <div class="mx-auto max-w-4xl p-5">
-    <article class="animate">
-      {await markdown}
-    </article>
-  </div>
-</Layout>
+ <BlogContent client:load slug={slug} />
