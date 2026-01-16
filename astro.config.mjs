@@ -7,8 +7,9 @@ import node from "@astrojs/node";
 
 import sitemap from "@astrojs/sitemap";
 
-import markdownIntegration from "@astropub/md";
+import vercelAdapter from "@astrojs/vercel";
 
+import markdownIntegration from "@astropub/md";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import rehypePrettyCode from "rehype-pretty-code";
@@ -32,8 +33,8 @@ export default defineConfig({
         rehypePrettyCode,
         {
           theme: {
-            light: "github-light",
-            dark: "github-dark",
+            light: "catppuccin-latte",
+            dark: "catppuccin-mocha",
           },
 
         },
@@ -41,7 +42,8 @@ export default defineConfig({
     ],
   },
   integrations: [markdownIntegration(), sitemap()],
-  adapter: node({
-    mode: "standalone",
-  }),
+  // adapter: node({
+  //   mode: "standalone",
+  // }),
+  adapter: vercelAdapter(),
 });
