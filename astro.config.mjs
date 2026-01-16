@@ -1,10 +1,11 @@
 // @ts-check
 import { fileURLToPath, URL } from "node:url";
-import sitemap from "@astrojs/sitemap";
+// import vercelAdapter from "@astrojs/vercel";
+import node from "@astrojs/node";
 
 // import playformCompress from "@playform/compress";
 
-import vercelAdapter from "@astrojs/vercel";
+import sitemap from "@astrojs/sitemap";
 
 import markdownIntegration from "@astropub/md";
 
@@ -25,9 +26,14 @@ export default defineConfig({
   },
   markdown: {
     shikiConfig: {
-      theme: "dracula",
+      themes: {
+        light: "catppuccin-latte",
+        dark: "catppuccin-mocha",
+      },
     },
   },
   integrations: [markdownIntegration(), sitemap()],
-  adapter: vercelAdapter(),
+  adapter: node({
+    mode: "standalone",
+  }),
 });
