@@ -3,7 +3,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-:root {
+/* :root {
   --font-sans: "DM Sans", sans-serif;
   --text: #040316;
   --background: #dedde4;
@@ -107,16 +107,6 @@ article a {
   @apply opacity-100 translate-y-0;
 }
 
-.astro-code {
-  background-color: #ededfe !important;
-}
-
-.dark .astro-code,
-.dark .astro-code span {
-  color: var(--shiki-dark) !important;
-  background-color: var(--shiki-dark-bg) !important;
-  @apply rounded-xl;
-}
 
 html.lenis,
 html.lenis body {
@@ -127,4 +117,4 @@ html.lenis body {
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
-}
+} */

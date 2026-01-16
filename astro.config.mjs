@@ -11,6 +11,7 @@ import markdownIntegration from "@astropub/md";
 
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
+import rehypePrettyCode from "rehype-pretty-code";
 
 // https://astro.build/config
 export default defineConfig({
@@ -25,12 +26,19 @@ export default defineConfig({
     },
   },
   markdown: {
-    shikiConfig: {
-      themes: {
-        light: "catppuccin-latte",
-        dark: "catppuccin-mocha",
-      },
-    },
+    // syntaxHighlight: false,
+    rehypePlugins: [
+      [
+        rehypePrettyCode,
+        {
+          theme: {
+            light: "github-light",
+            dark: "github-dark",
+          },
+
+        },
+      ],
+    ],
   },
   integrations: [markdownIntegration(), sitemap()],
   adapter: node({
