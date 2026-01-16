@@ -23,16 +23,14 @@ export default defineConfig({
       },
     },
   },
-
-  // markdown: {
-  //   shikiConfig: {
-  //     themes: {
-  //       light: "catppuccin-latte",
-  //       dark: "catppuccin-mocha",
-  //     },
-  //   },
-  // },
-
+  markdown: {
+    // shikiConfig: {
+    //   themes: {
+    //     light: "catppuccin-latte",
+    //     dark: "catppuccin-mocha",
+    //   },
+    // },
+  },
   integrations: [markdownIntegration(), sitemap()],
   adapter: vercelAdapter(),
 });

@@ -27,6 +27,7 @@
   --color-accent: var(--accent);
 }
 
+
 body {
   @apply bg-background text-text font-sans;
 }
@@ -106,7 +107,7 @@ article a {
   @apply opacity-100 translate-y-0;
 }
 
-.astro-code {
+/* .astro-code {
   background-color: #ededfe !important;
 }
 
@@ -115,7 +116,7 @@ article a {
   color: var(--shiki-dark) !important;
   background-color: var(--shiki-dark-bg) !important;
   @apply rounded-xl;
-}
+} */
 
 html.lenis,
 html.lenis body {
